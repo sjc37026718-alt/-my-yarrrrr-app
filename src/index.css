@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-120px) translateX(var(--drift, 0px)) rotate(360deg);
+  }
+}
+
+.animate-float {
+  animation: float linear infinite;
+}
