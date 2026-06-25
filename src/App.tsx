@@ -47,6 +47,13 @@ function App() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(true)
+  const [filter, setFilter] = useState<'all' | 'active' | 'done'>('all')
+
+  const filtered = restaurants.filter((r) => {
+    if (filter === 'active') return !r.is_complete
+    if (filter === 'done') return r.is_complete
+    return true
+  })
 
   useEffect(() => {
     fetchRestaurants()
@@ -100,6 +107,24 @@ function App() {
           나만의 맛집 리스트
         </p>
 
+        <div className="flex rounded-xl bg-white/80 backdrop-blur-sm border border-orange-100 shadow-sm mb-6 overflow-hidden">
+          {([['all', '전체'], ['active', '진행중'], ['done', '완료']] as const).map(
+            ([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setFilter(key)}
+                className={`flex-1 py-2 text-sm font-medium transition-colors cursor-pointer ${
+                  filter === key
+                    ? 'bg-orange-500 text-white'
+                    : 'text-gray-500 hover:text-orange-500'
+                }`}
+              >
+                {label}
+              </button>
+            )
+          )}
+        </div>
+
         <div className="flex gap-2 mb-6">
           <input
             type="text"
@@ -119,13 +144,17 @@ function App() {
 
         {loading ? (
           <p className="text-center text-gray-400 py-12">불러오는 중...</p>
-        ) : restaurants.length === 0 ? (
+        ) : filtered.length === 0 ? (
           <p className="text-center text-gray-400 py-12">
-            아직 추가된 맛집이 없습니다
+            {restaurants.length === 0
+              ? '아직 추가된 맛집이 없습니다'
+              : filter === 'active'
+                ? '진행중인 항목이 없습니다'
+                : '완료된 항목이 없습니다'}
           </p>
         ) : (
           <ul className="space-y-2">
-            {restaurants.map((r) => (
+            {filtered.map((r) => (
               <li
                 key={r.id}
                 className="flex items-center gap-3 px-4 py-3 bg-white/80 backdrop-blur-sm border border-orange-100 rounded-xl group shadow-sm"
