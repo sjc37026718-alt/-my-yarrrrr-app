@@ -49,6 +49,9 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'active' | 'done'>('all')
 
+  const activeCount = restaurants.filter((r) => !r.is_complete).length
+  const doneCount = restaurants.filter((r) => r.is_complete).length
+
   const filtered = restaurants.filter((r) => {
     if (filter === 'active') return !r.is_complete
     if (filter === 'done') return r.is_complete
@@ -108,8 +111,8 @@ function App() {
         </p>
 
         <div className="flex rounded-xl bg-white/80 backdrop-blur-sm border border-orange-100 shadow-sm mb-6 overflow-hidden">
-          {([['all', '전체'], ['active', '진행중'], ['done', '완료']] as const).map(
-            ([key, label]) => (
+          {([['all', '전체', restaurants.length], ['active', '진행중', activeCount], ['done', '완료', doneCount]] as const).map(
+            ([key, label, count]) => (
               <button
                 key={key}
                 onClick={() => setFilter(key)}
@@ -119,7 +122,7 @@ function App() {
                     : 'text-gray-500 hover:text-orange-500'
                 }`}
               >
-                {label}
+                {label} {count}
               </button>
             )
           )}
