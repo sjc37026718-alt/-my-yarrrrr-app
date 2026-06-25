@@ -103,10 +103,10 @@ function App() {
       <FloatingIcons />
 
       <div className="w-full max-w-md relative z-10">
-        <h1 className="text-4xl font-bold text-center mb-2 text-orange-600">
+        <h1 className="text-6xl font-bold text-center mb-2 text-orange-600">
           🍽 Yarrrrr list
         </h1>
-        <p className="text-center text-orange-400 mb-8 text-sm">
+        <p className="text-center text-orange-400 mb-8 text-sm font-bold">
           나만의 맛집 리스트
         </p>
 
