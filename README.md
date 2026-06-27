@@ -1,32 +1,33 @@
-# React + TypeScript + Vite
+# Yarrrrr List — 나만의 맛집 리스트
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+AI(Claude) 바이브코딩으로 만든 맛집 관리 웹앱입니다.
 
-Currently, two official plugins are available:
+## 무엇을 만들었나
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+맛집을 추가하고, 방문 완료 체크하고, 삭제할 수 있는 웹앱입니다.
+Supabase를 연동하여 데이터가 실시간으로 저장되고, 어디서든 접근할 수 있습니다.
 
-## React Compiler
+## 주요 기능
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 맛집 추가 / 삭제 / 방문 완료 체크 (CRUD)
+- 전체 / 진행중 / 완료 필터링
+- Supabase 실시간 DB 연동
+- 음식 아이콘 플로팅 애니메이션
 
-## Expanding the Oxlint configuration
+## 활용 도구
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+| 도구 | 역할 |
+|------|------|
+| Claude | 전체 코드 작성 (바이브코딩) |
+| React + TypeScript | 프론트엔드 UI |
+| Supabase | 실시간 데이터베이스 |
+| Vite | 빌드 도구 |
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## 배운 점
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- 비개발자도 AI를 활용하면 실제 작동하는 웹앱을 만들 수 있다는 것을 확인
+- DB 연동까지 포함된 CRUD 앱의 전체 흐름을 이해
+
+## 만든 사람
+
+최선정 · 콘텐츠 마케터 · AX 해커톤 Day 1
